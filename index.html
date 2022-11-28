@@ -18,30 +18,28 @@
         <div class="product-container">
           <div
             class="product-image"
-            :class="{ 'out-of-stock-img': product.inventory === 0 }"
+            :class="{ 'out-of-stock-img': inStock === 0 }"
           >
-            <img v-bind:src="product.image" :alt="product.description" />
+            <img v-bind:src="image" :alt="product.description" />
           </div>
           <div class="product-info">
-            <h1>{{ product.name }}</h1>
-            <p v-if="product.inventory > 10">In Stock</p>
-            <p v-else-if="product.inventory > 0 && product.inventory <= 10">
-              Almost sold out
-            </p>
-            <p v-show="product.inventory === 0">Out of Stock</p>
+            <h1>{{ title }}</h1>
+            <p v-if="inStock > 10">In Stock</p>
+            <p v-else-if="inStock > 0 && inStock <= 10">Almost sold out</p>
+            <p v-show="inStock === 0">Out of Stock</p>
             <ul>
               <li v-for="detail in product.details">{{ detail }}</li>
             </ul>
             <div
               class="color-circle"
-              v-for="variant in productVariants"
-              @mouseover="showImage(variant.image)"
+              v-for="(variant, index) in productVariants"
+              @mouseover="updateVariant(index)"
               :style="{ backgroundColor: variant.color}"
               :key="variant.id"
             ></div>
             <button
               class="button"
-              :class="{ disabledButton:  product.inventory === 0}"
+              :class="{ disabledButton:  inStock === 0}"
               v-on:click="addToCart"
             >
               Add to Cart
