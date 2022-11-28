@@ -1,3 +1,4 @@
+//import { Vue, createApp } from 'vue';
 const app = Vue.createApp({
     data: function () {
         return {
@@ -5,7 +6,7 @@ const app = Vue.createApp({
                 name: 'Socks',
                 description: "Blue magnifisent socks",
                 image: './assets/images/socks_green.jpg',
-                inventory: 100,
+                inventory: 10,
                 details: ['50% cotton', '30% wool', '20% polyester']
             },
             productVariants: [{
