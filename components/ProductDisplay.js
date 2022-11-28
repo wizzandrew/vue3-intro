@@ -42,6 +42,8 @@ app.component('product-display', {
         </button>
       </div>
     </div>
+    <review-list :reviews="reviews" v-show="reviews.length > 0"></review-list>
+    <review-form @review-submitted="addReview"></review-form>
   </div>`,
     data: function () {
         return {
@@ -64,6 +66,7 @@ app.component('product-display', {
                 image: './assets/images/socks_blue.jpg',
                 quantity: 0
             }],
+            reviews: []
         }
     },
     computed: {
@@ -86,6 +89,9 @@ app.component('product-display', {
         },
         updateVariant(index) {
             this.product.selectedVariant = index;
+        },
+        addReview(review) {
+            this.reviews.push(review);
         }
     }
 })
